@@ -1,0 +1,37 @@
+<div ng-controller="NotesController as nc">
+    <div class="row">
+        <div class="col-md-12">
+            <span class="glyphicon myclass glyphicon-plus-sign" aria-hidden="true" ng-if="!nc.form" ng-click="nc.showFormShow()"></span>
+            <span class="glyphicon myclass glyphicon-minus-sign" aria-hidden="true" ng-if="nc.form" ng-click="nc.showFormHide()"></span>
+        </div>
+    </div>
+    <div class="container" ng-if="nc.form">
+        <div class="col-md-12">
+            <div class="form-area">
+                <form role="form">
+                    <br style="clear:both">
+                   <!-- <h3 style="margin-bottom: 25px; text-align: center;">Contact Form</h3>-->
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="title" placeholder="Title" ng-model="nc.title">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" type="textarea" placeholder="Note" rows="7" ng-model="nc.note"></textarea>
+                    </div>
+                    <button type="button" id="submit" name="submit" class="btn btn-primary center-block" ng-click="nc.addNote()">Add Note</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3" ng-repeat="note in nc.allNotes track by $index">
+               <div class="note-area">
+                   <h3 style="text-align: center">{{note.title}}</h3>
+                   <article>{{note.note}}</article>
+               </div>
+            </div>
+        </div>
+    </div>
+
+</div>
