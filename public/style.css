@@ -31,3 +31,6 @@
     margin: 0 0 0 90%;
     cursor: pointer;
 }
+.glyphicon.glyphicon-pencil{
+    cursor: pointer;
+}

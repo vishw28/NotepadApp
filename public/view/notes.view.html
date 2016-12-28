@@ -1,11 +1,19 @@
 <div ng-controller="NotesController as nc">
     <div class="row">
         <div class="col-md-12">
-            <span class="glyphicon myclass glyphicon-plus-sign" aria-hidden="true" ng-if="!nc.form" ng-click="nc.showFormShow()"></span>
-            <span class="glyphicon myclass glyphicon-minus-sign" aria-hidden="true" ng-if="nc.form" ng-click="nc.showFormHide()"></span>
+            <span class="glyphicon myclass glyphicon-plus-sign"
+                  aria-hidden="true"
+                  ng-if="!nc.form"
+                  title="Add Note"
+                  ng-click="nc.showFormShow()">
+            </span>
+            <span class="glyphicon myclass glyphicon-minus-sign"
+                  aria-hidden="true"
+                  ng-if="nc.form"
+                  ng-click="nc.showFormHide()"></span>
         </div>
     </div>
-    <div class="container" ng-if="nc.form">
+    <div class="container" ng-if="nc.form" ng-hide="nc.edit">
         <div class="col-md-12">
             <div class="form-area">
                 <form role="form">
@@ -22,14 +30,34 @@
             </div>
         </div>
     </div>
+    <div class="container" ng-if="nc.edit">
+        <div class="col-md-12">
+            <div class="form-area">
+                <form role="form">
+                    <br style="clear:both">
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="title" placeholder="Title" ng-model="nc.notes.title">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" type="textarea" placeholder="Note" rows="7" ng-model="nc.notes.note"></textarea>
+                    </div>
+                    <button type="button" id="submit" name="submit" class="btn btn-primary center-block" ng-click="nc.saveNote()">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <div class="container">
         <div class="row">
-            <div class="col-md-3" ng-repeat="note in nc.allNotes track by $index">
+            <div class= "col-md-4" ng-repeat="note in nc.allNotes track by $index">
                <div class="note-area">
                    <div class="row">
-                       <div class="col-md-12">
-                           <span class="glyphicon glyphicon-trash" ng-click="nc.deleteNote($index)"></span>
+                       <div class="col-md-6">
+                           <span class="glyphicon glyphicon-pencil" ng-click="nc.editNote($index)" title="Edit Note"></span>
+                       </div>
+                       <div class="col-md-6">
+                           <span class="glyphicon glyphicon-trash" ng-click="nc.deleteNote($index)" title="Delete Note"></span>
                        </div>
                    </div>
                    <h3 style="text-align: center">{{note.title}}</h3>
