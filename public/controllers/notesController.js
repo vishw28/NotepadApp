@@ -35,8 +35,8 @@
             }
 
             nc.saveNote = function () {
-                nc.allNotes.splice(save_id,1);
-                nc.addNote();
+                nc.allNotes.splice(save_id,1,nc.notes);
+                nc.notes={};
                 nc.edit = false;
             }
 
