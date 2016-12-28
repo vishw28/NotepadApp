@@ -1,6 +1,7 @@
 .glyphicon.myclass{
     font-size: 40px;
     margin: 0 50% 0 50%;
+    cursor: pointer;
 }
 
 .red{
@@ -24,4 +25,9 @@
     margin : 10px;
     border: 1px solid GREY;
     word-wrap: break-word;
+}
+
+.glyphicon.glyphicon-trash{
+    margin: 0 0 0 90%;
+    cursor: pointer;
 }

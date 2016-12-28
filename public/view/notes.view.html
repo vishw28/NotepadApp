@@ -10,12 +10,12 @@
             <div class="form-area">
                 <form role="form">
                     <br style="clear:both">
-                   <!-- <h3 style="margin-bottom: 25px; text-align: center;">Contact Form</h3>-->
+
                     <div class="form-group">
-                        <input type="text" class="form-control" name="title" placeholder="Title" ng-model="nc.title">
+                        <input type="text" class="form-control" name="title" placeholder="Title" ng-model="nc.notes.title">
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" type="textarea" placeholder="Note" rows="7" ng-model="nc.note"></textarea>
+                        <textarea class="form-control" type="textarea" placeholder="Note" rows="7" ng-model="nc.notes.note"></textarea>
                     </div>
                     <button type="button" id="submit" name="submit" class="btn btn-primary center-block" ng-click="nc.addNote()">Add Note</button>
                 </form>
@@ -27,6 +27,11 @@
         <div class="row">
             <div class="col-md-3" ng-repeat="note in nc.allNotes track by $index">
                <div class="note-area">
+                   <div class="row">
+                       <div class="col-md-12">
+                           <span class="glyphicon glyphicon-trash" ng-click="nc.deleteNote($index)"></span>
+                       </div>
+                   </div>
                    <h3 style="text-align: center">{{note.title}}</h3>
                    <article>{{note.note}}</article>
                </div>

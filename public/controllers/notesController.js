@@ -6,11 +6,13 @@
     angular.module('myApp')
         .controller('NotesController',NotesController);
 
-    function NotesController () {
+    NotesController.$inject = ['notesService'];
+
+    function NotesController (notesService) {
             var nc = this;
             nc.form = false;
             nc.notes = {};
-            nc.allNotes = [];
+            nc.allNotes = notesService.getNotes();
             nc.showFormShow = function () {
                 nc.form = true;
             }
@@ -18,10 +20,16 @@
                 nc.form = false;
             }
             nc.addNote = function () {
-              nc.notes.title =  nc.title;
-              nc.notes.note =  nc.note;
-              nc.allNotes.push(nc.notes);
-                console.log(nc.allNotes);
+                notesService.addNotes(nc.notes);
+                nc.notes = {};
+
+                angular.forEach(nc.allNotes,function (x) {
+                    console.log(x.title);
+                })
             }
+            nc.deleteNote = function (id) {
+                nc.allNotes.splice(id,1);
+            }
+
     }
 })();
